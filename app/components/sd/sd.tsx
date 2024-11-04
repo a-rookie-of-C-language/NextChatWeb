@@ -29,13 +29,12 @@ import SDIcon from "@/app/icons/sd.svg";
 import { Property } from "csstype";
 import {
   showConfirm,
-  showImageModal,
-  showModal,
+  //showImageModal,
+  //showModal,
 } from "@/app/components/ui-lib";
 import { removeImage } from "@/app/utils/chat";
 import { SideBar } from "./sd-sidebar";
 import { WindowContent } from "@/app/components/home";
-import { params } from "./sd-panel";
 
 function getSdTaskStatus(item: any) {
   let s: string;
@@ -65,23 +64,23 @@ function getSdTaskStatus(item: any) {
       <span>
         {Locale.Sd.Status.Name}: {s}
       </span>
-      {item.status === "error" && (
-        <span
-          className="clickable"
-          onClick={() => {
-            showModal({
-              title: Locale.Sd.Detail,
-              children: (
-                <div style={{ color: color, userSelect: "text" }}>
-                  {item.error}
-                </div>
-              ),
-            });
-          }}
-        >
-          - {item.error}
-        </span>
-      )}
+      {/*{item.status === "error" && (*/}
+      {/*  <span*/}
+      {/*    className="clickable"*/}
+      {/*    onClick={() => {*/}
+      {/*      showModal({*/}
+      {/*        title: Locale.Sd.Detail,*/}
+      {/*        children: (*/}
+      {/*          <div style={{ color: color, userSelect: "text" }}>*/}
+      {/*            {item.error}*/}
+      {/*          </div>*/}
+      {/*        ),*/}
+      {/*      });*/}
+      {/*    }}*/}
+      {/*  >*/}
+      {/*    - {item.error}*/}
+      {/*  </span>*/}
+      {/*)}*/}
     </p>
   );
 }
@@ -158,24 +157,24 @@ export function Sd() {
                       className={styles["sd-img-item"]}
                     >
                       {item.status === "success" ? (
-                        <img
-                          className={styles["img"]}
-                          src={item.img_data}
-                          alt={item.id}
-                          onClick={(e) =>
-                            showImageModal(
-                              item.img_data,
-                              true,
-                              isMobileScreen
-                                ? { width: "100%", height: "fit-content" }
-                                : { maxWidth: "100%", maxHeight: "100%" },
-                              isMobileScreen
-                                ? { width: "100%", height: "fit-content" }
-                                : { width: "100%", height: "100%" },
-                            )
-                          }
-                        />
-                      ) : item.status === "error" ? (
+                        // <img
+                        //   className={styles["img"]}
+                        //   src={item.img_data}
+                        //   alt={item.id}
+                        //   onClick={(e) =>
+                        //     showImageModal(
+                        //       item.img_data,
+                        //       true,
+                        //       isMobileScreen
+                        //         ? { width: "100%", height: "fit-content" }
+                        //         : { maxWidth: "100%", maxHeight: "100%" },
+                        //       isMobileScreen
+                        //         ? { width: "100%", height: "fit-content" }
+                        //         : { width: "100%", height: "100%" },
+                        //     )
+                        //   }
+                        // />
+                        // ) : item.status === "error" ? (
                         <div className={styles["pre-img"]}>
                           <ErrorIcon />
                         </div>
@@ -193,16 +192,16 @@ export function Sd() {
                           <span
                             className="clickable"
                             title={item.params.prompt}
-                            onClick={() => {
-                              showModal({
-                                title: Locale.Sd.Detail,
-                                children: (
-                                  <div style={{ userSelect: "text" }}>
-                                    {item.params.prompt}
-                                  </div>
-                                ),
-                              });
-                            }}
+                            // onClick={() => {
+                            //   showModal({
+                            //     title: Locale.Sd.Detail,
+                            //     children: (
+                            //       <div style={{ userSelect: "text" }}>
+                            //         {item.params.prompt}
+                            //       </div>
+                            //     ),
+                            //   });
+                            // }}
                           >
                             {item.params.prompt}
                           </span>
@@ -218,60 +217,60 @@ export function Sd() {
                               text={Locale.Sd.Actions.Params}
                               icon={<PromptIcon />}
                               onClick={() => {
-                                showModal({
-                                  title: Locale.Sd.GenerateParams,
-                                  children: (
-                                    <div style={{ userSelect: "text" }}>
-                                      {Object.keys(item.params).map((key) => {
-                                        let label = key;
-                                        let value = item.params[key];
-                                        switch (label) {
-                                          case "prompt":
-                                            label = Locale.SdPanel.Prompt;
-                                            break;
-                                          case "negative_prompt":
-                                            label =
-                                              Locale.SdPanel.NegativePrompt;
-                                            break;
-                                          case "aspect_ratio":
-                                            label = Locale.SdPanel.AspectRatio;
-                                            break;
-                                          case "seed":
-                                            label = "Seed";
-                                            value = value || 0;
-                                            break;
-                                          case "output_format":
-                                            label = Locale.SdPanel.OutFormat;
-                                            value = value?.toUpperCase();
-                                            break;
-                                          case "style":
-                                            label = Locale.SdPanel.ImageStyle;
-                                            value = params
-                                              .find(
-                                                (item) =>
-                                                  item.value === "style",
-                                              )
-                                              ?.options?.find(
-                                                (item) => item.value === value,
-                                              )?.name;
-                                            break;
-                                          default:
-                                            break;
-                                        }
-
-                                        return (
-                                          <div
-                                            key={key}
-                                            style={{ margin: "10px" }}
-                                          >
-                                            <strong>{label}: </strong>
-                                            {value}
-                                          </div>
-                                        );
-                                      })}
-                                    </div>
-                                  ),
-                                });
+                                //   showModal({
+                                //     title: Locale.Sd.GenerateParams,
+                                //     children: (
+                                //       <div style={{ userSelect: "text" }}>
+                                //         {Object.keys(item.params).map((key) => {
+                                //           let label = key;
+                                //           let value = item.params[key];
+                                //           switch (label) {
+                                //             case "prompt":
+                                //               label = Locale.SdPanel.Prompt;
+                                //               break;
+                                //             case "negative_prompt":
+                                //               label =
+                                //                 Locale.SdPanel.NegativePrompt;
+                                //               break;
+                                //             case "aspect_ratio":
+                                //               label = Locale.SdPanel.AspectRatio;
+                                //               break;
+                                //             case "seed":
+                                //               label = "Seed";
+                                //               value = value || 0;
+                                //               break;
+                                //             case "output_format":
+                                //               label = Locale.SdPanel.OutFormat;
+                                //               value = value?.toUpperCase();
+                                //               break;
+                                //             case "style":
+                                //               label = Locale.SdPanel.ImageStyle;
+                                //               value = params
+                                //                 .find(
+                                //                   (item) =>
+                                //                     item.value === "style",
+                                //                 )
+                                //                 ?.options?.find(
+                                //                   (item) => item.value === value,
+                                //                 )?.name;
+                                //               break;
+                                //             default:
+                                //               break;
+                                //           }
+                                //
+                                //           return (
+                                //             <div
+                                //               key={key}
+                                //               style={{ margin: "10px" }}
+                                //             >
+                                //               <strong>{label}: </strong>
+                                //               {value}
+                                //             </div>
+                                //           );
+                                //         })}
+                                //       </div>
+                                //     ),
+                                //   });
                               }}
                             />
                             <ChatAction

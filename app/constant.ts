@@ -10,7 +10,7 @@ export const FETCH_TAG_URL = `https://api.github.com/repos/${OWNER}/${REPO}/tags
 export const RUNTIME_CONFIG_DOM = "danger-runtime-config";
 
 export const STABILITY_BASE_URL = "https://api.stability.ai";
-
+export const OLLAMA_BASE_URL = "localhost:11434";
 export const OPENAI_BASE_URL = "https://api.openai.com";
 export const ANTHROPIC_BASE_URL = "https://api.anthropic.com";
 
@@ -279,106 +279,105 @@ export const DEFAULT_TTS_VOICES = [
   "nova",
   "shimmer",
 ];
-
-const openaiModels = [
-  "gpt-3.5-turbo",
-  "gpt-3.5-turbo-1106",
-  "gpt-3.5-turbo-0125",
-  "gpt-4",
-  "gpt-4-0613",
-  "gpt-4-32k",
-  "gpt-4-32k-0613",
-  "gpt-4-turbo",
-  "gpt-4-turbo-preview",
-  "gpt-4o",
-  "gpt-4o-2024-05-13",
-  "gpt-4o-2024-08-06",
-  "chatgpt-4o-latest",
-  "gpt-4o-mini",
-  "gpt-4o-mini-2024-07-18",
-  "gpt-4-vision-preview",
-  "gpt-4-turbo-2024-04-09",
-  "gpt-4-1106-preview",
-  "dall-e-3",
-  "o1-mini",
-  "o1-preview",
-];
-
-const googleModels = [
-  "gemini-1.0-pro",
-  "gemini-1.5-pro-latest",
-  "gemini-1.5-flash-latest",
-  "gemini-pro-vision",
-];
-
-const anthropicModels = [
-  "claude-instant-1.2",
-  "claude-2.0",
-  "claude-2.1",
-  "claude-3-sonnet-20240229",
-  "claude-3-opus-20240229",
-  "claude-3-haiku-20240307",
-  "claude-3-5-sonnet-20240620",
-];
-
-const baiduModels = [
-  "ernie-4.0-turbo-8k",
-  "ernie-4.0-8k",
-  "ernie-4.0-8k-preview",
-  "ernie-4.0-8k-preview-0518",
-  "ernie-4.0-8k-latest",
-  "ernie-3.5-8k",
-  "ernie-3.5-8k-0205",
-  "ernie-speed-128k",
-  "ernie-speed-8k",
-  "ernie-lite-8k",
-  "ernie-tiny-8k",
-];
-
-const bytedanceModels = [
-  "Doubao-lite-4k",
-  "Doubao-lite-32k",
-  "Doubao-lite-128k",
-  "Doubao-pro-4k",
-  "Doubao-pro-32k",
-  "Doubao-pro-128k",
-];
-
-const alibabaModes = [
-  "qwen-turbo",
-  "qwen-plus",
-  "qwen-max",
-  "qwen-max-0428",
-  "qwen-max-0403",
-  "qwen-max-0107",
-  "qwen-max-longcontext",
-];
-
-const tencentModels = [
-  "hunyuan-pro",
-  "hunyuan-standard",
-  "hunyuan-lite",
-  "hunyuan-role",
-  "hunyuan-functioncall",
-  "hunyuan-code",
-  "hunyuan-vision",
-];
-
-const moonshotModes = ["moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k"];
-
-const iflytekModels = [
-  "general",
-  "generalv3",
-  "pro-128k",
-  "generalv3.5",
-  "4.0Ultra",
-];
-
-const xAIModes = ["grok-beta"];
-
+const myAi = ["myOpenAI"];
+// const openaiModels = [
+//   "gpt-3.5-turbo",
+//   "gpt-3.5-turbo-1106",
+//   "gpt-3.5-turbo-0125",
+//   "gpt-4",
+//   "gpt-4-0613",
+//   "gpt-4-32k",
+//   "gpt-4-32k-0613",
+//   "gpt-4-turbo",
+//   "gpt-4-turbo-preview",
+//   "gpt-4o",
+//   "gpt-4o-2024-05-13",
+//   "gpt-4o-2024-08-06",
+//   "chatgpt-4o-latest",
+//   "gpt-4o-mini",
+//   "gpt-4o-mini-2024-07-18",
+//   "gpt-4-vision-preview",
+//   "gpt-4-turbo-2024-04-09",
+//   "gpt-4-1106-preview",
+//   "dall-e-3",
+//   "o1-mini",
+//   "o1-preview",
+// ];
+//
+// const googleModels = [
+//   "gemini-1.0-pro",
+//   "gemini-1.5-pro-latest",
+//   "gemini-1.5-flash-latest",
+//   "gemini-pro-vision",
+// ];
+//
+// const anthropicModels = [
+//   "claude-instant-1.2",
+//   "claude-2.0",
+//   "claude-2.1",
+//   "claude-3-sonnet-20240229",
+//   "claude-3-opus-20240229",
+//   "claude-3-haiku-20240307",
+//   "claude-3-5-sonnet-20240620",
+// ];
+//
+// const baiduModels = [
+//   "ernie-4.0-turbo-8k",
+//   "ernie-4.0-8k",
+//   "ernie-4.0-8k-preview",
+//   "ernie-4.0-8k-preview-0518",
+//   "ernie-4.0-8k-latest",
+//   "ernie-3.5-8k",
+//   "ernie-3.5-8k-0205",
+//   "ernie-speed-128k",
+//   "ernie-speed-8k",
+//   "ernie-lite-8k",
+//   "ernie-tiny-8k",
+// ];
+//
+// const bytedanceModels = [
+//   "Doubao-lite-4k",
+//   "Doubao-lite-32k",
+//   "Doubao-lite-128k",
+//   "Doubao-pro-4k",
+//   "Doubao-pro-32k",
+//   "Doubao-pro-128k",
+// ];
+//
+// const alibabaModes = [
+//   "qwen-turbo",
+//   "qwen-plus",
+//   "qwen-max",
+//   "qwen-max-0428",
+//   "qwen-max-0403",
+//   "qwen-max-0107",
+//   "qwen-max-longcontext",
+// ];
+//
+// const tencentModels = [
+//   "hunyuan-pro",
+//   "hunyuan-standard",
+//   "hunyuan-lite",
+//   "hunyuan-role",
+//   "hunyuan-functioncall",
+//   "hunyuan-code",
+//   "hunyuan-vision",
+// ];
+//
+// const moonshotModes = ["moonshot-v1-8k", "moonshot-v1-32k", "moonshot-v1-128k"];
+//
+// const iflytekModels = [
+//   "general",
+//   "generalv3",
+//   "pro-128k",
+//   "generalv3.5",
+//   "4.0Ultra",
+// ];
+//
+// const xAIModes = ["grok-beta"];
 let seq = 1000; // 内置的模型序号生成器从1000开始
 export const DEFAULT_MODELS = [
-  ...openaiModels.map((name) => ({
+  ...myAi.map((name) => ({
     name,
     available: true,
     sorted: seq++, // Global sequence sort(index)
@@ -389,117 +388,132 @@ export const DEFAULT_MODELS = [
       sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
     },
   })),
-  ...openaiModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "azure",
-      providerName: "Azure",
-      providerType: "azure",
-      sorted: 2,
-    },
-  })),
-  ...googleModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "google",
-      providerName: "Google",
-      providerType: "google",
-      sorted: 3,
-    },
-  })),
-  ...anthropicModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "anthropic",
-      providerName: "Anthropic",
-      providerType: "anthropic",
-      sorted: 4,
-    },
-  })),
-  ...baiduModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "baidu",
-      providerName: "Baidu",
-      providerType: "baidu",
-      sorted: 5,
-    },
-  })),
-  ...bytedanceModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "bytedance",
-      providerName: "ByteDance",
-      providerType: "bytedance",
-      sorted: 6,
-    },
-  })),
-  ...alibabaModes.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "alibaba",
-      providerName: "Alibaba",
-      providerType: "alibaba",
-      sorted: 7,
-    },
-  })),
-  ...tencentModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "tencent",
-      providerName: "Tencent",
-      providerType: "tencent",
-      sorted: 8,
-    },
-  })),
-  ...moonshotModes.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "moonshot",
-      providerName: "Moonshot",
-      providerType: "moonshot",
-      sorted: 9,
-    },
-  })),
-  ...iflytekModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "iflytek",
-      providerName: "Iflytek",
-      providerType: "iflytek",
-      sorted: 10,
-    },
-  })),
-  ...xAIModes.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "xai",
-      providerName: "XAI",
-      providerType: "xai",
-      sorted: 11,
-    },
-  })),
-] as const;
+];
+
+// let seq = 1000; // 内置的模型序号生成器从1000开始
+// export const DEFAULT_MODELS = [
+//   ...openaiModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++, // Global sequence sort(index)
+//     provider: {
+//       id: "openai",
+//       providerName: "OpenAI",
+//       providerType: "openai",
+//       sorted: 1, // 这里是固定的，确保顺序与之前内置的版本一致
+//     },
+//   })),
+//   ...openaiModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "azure",
+//       providerName: "Azure",
+//       providerType: "azure",
+//       sorted: 2,
+//     },
+//   })),
+//   ...googleModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "google",
+//       providerName: "Google",
+//       providerType: "google",
+//       sorted: 3,
+//     },
+//   })),
+//   ...anthropicModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "anthropic",
+//       providerName: "Anthropic",
+//       providerType: "anthropic",
+//       sorted: 4,
+//     },
+//   })),
+//   ...baiduModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "baidu",
+//       providerName: "Baidu",
+//       providerType: "baidu",
+//       sorted: 5,
+//     },
+//   })),
+//   ...bytedanceModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "bytedance",
+//       providerName: "ByteDance",
+//       providerType: "bytedance",
+//       sorted: 6,
+//     },
+//   })),
+//   ...alibabaModes.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "alibaba",
+//       providerName: "Alibaba",
+//       providerType: "alibaba",
+//       sorted: 7,
+//     },
+//   })),
+//   ...tencentModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "tencent",
+//       providerName: "Tencent",
+//       providerType: "tencent",
+//       sorted: 8,
+//     },
+//   })),
+//   ...moonshotModes.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "moonshot",
+//       providerName: "Moonshot",
+//       providerType: "moonshot",
+//       sorted: 9,
+//     },
+//   })),
+//   ...iflytekModels.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "iflytek",
+//       providerName: "Iflytek",
+//       providerType: "iflytek",
+//       sorted: 10,
+//     },
+//   })),
+//   ...xAIModes.map((name) => ({
+//     name,
+//     available: true,
+//     sorted: seq++,
+//     provider: {
+//       id: "xai",
+//       providerName: "XAI",
+//       providerType: "xai",
+//       sorted: 11,
+//     },
+//   })),
+// ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
 export const MAX_RENDER_MSG_COUNT = 45;

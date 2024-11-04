@@ -9,17 +9,12 @@ import CopyIcon from "../icons/copy.svg";
 import ClearIcon from "../icons/clear.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import EditIcon from "../icons/edit.svg";
-import FireIcon from "../icons/fire.svg";
 import EyeIcon from "../icons/eye.svg";
-import DownloadIcon from "../icons/download.svg";
-import UploadIcon from "../icons/upload.svg";
-import ConfigIcon from "../icons/config.svg";
 import ConfirmIcon from "../icons/confirm.svg";
 
 import ConnectionIcon from "../icons/connection.svg";
 import CloudSuccessIcon from "../icons/cloud-success.svg";
 import CloudFailIcon from "../icons/cloud-fail.svg";
-import { trackSettingsPageGuideToCPaymentClick } from "../utils/auth-settings-events";
 import {
   Input,
   List,
@@ -29,7 +24,6 @@ import {
   Popover,
   Select,
   showConfirm,
-  showToast,
 } from "./ui-lib";
 import { ModelConfigList } from "./model-config";
 
@@ -49,8 +43,7 @@ import Locale, {
   changeLang,
   getLang,
 } from "../locales";
-import { copyToClipboard, clientUpdate, semverCompare } from "../utils";
-import Link from "next/link";
+import { copyToClipboard, semverCompare } from "../utils";
 import {
   Anthropic,
   Azure,
@@ -71,7 +64,7 @@ import {
   UPDATE_URL,
   Stability,
   Iflytek,
-  SAAS_CHAT_URL,
+  OLLAMA_BASE_URL,
 } from "../constant";
 import { Prompt, SearchService, usePromptStore } from "../store/prompt";
 import { ErrorBoundary } from "./error";
@@ -153,7 +146,7 @@ function UserPromptModal(props: { onClose?: () => void }) {
       setSearchPrompts([]);
     }
   }, [searchInput]);
-
+  // 添加新的聊天
   return (
     <div className="modal-mask">
       <Modal
@@ -506,68 +499,68 @@ function SyncItems() {
 
   return (
     <>
-      <List>
-        <ListItem
-          title={Locale.Settings.Sync.CloudState}
-          subTitle={
-            syncStore.lastProvider
-              ? `${new Date(syncStore.lastSyncTime).toLocaleString()} [${
-                  syncStore.lastProvider
-                }]`
-              : Locale.Settings.Sync.NotSyncYet
-          }
-        >
-          <div style={{ display: "flex" }}>
-            <IconButton
-              aria={Locale.Settings.Sync.CloudState + Locale.UI.Config}
-              icon={<ConfigIcon />}
-              text={Locale.UI.Config}
-              onClick={() => {
-                setShowSyncConfigModal(true);
-              }}
-            />
-            {couldSync && (
-              <IconButton
-                icon={<ResetIcon />}
-                text={Locale.UI.Sync}
-                onClick={async () => {
-                  try {
-                    await syncStore.sync();
-                    showToast(Locale.Settings.Sync.Success);
-                  } catch (e) {
-                    showToast(Locale.Settings.Sync.Fail);
-                    console.error("[Sync]", e);
-                  }
-                }}
-              />
-            )}
-          </div>
-        </ListItem>
+      {/*<List>*/}
+      {/*  <ListItem*/}
+      {/*    title={Locale.Settings.Sync.CloudState}*/}
+      {/*    subTitle={*/}
+      {/*      syncStore.lastProvider*/}
+      {/*        ? `${new Date(syncStore.lastSyncTime).toLocaleString()} [${*/}
+      {/*            syncStore.lastProvider*/}
+      {/*          }]`*/}
+      {/*        : Locale.Settings.Sync.NotSyncYet*/}
+      {/*    }*/}
+      {/*  >*/}
+      {/*    <div style={{ display: "flex" }}>*/}
+      {/*      <IconButton*/}
+      {/*        aria={Locale.Settings.Sync.CloudState + Locale.UI.Config}*/}
+      {/*        icon={<ConfigIcon />}*/}
+      {/*        text={Locale.UI.Config}*/}
+      {/*        onClick={() => {*/}
+      {/*          setShowSyncConfigModal(true);*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*      {couldSync && (*/}
+      {/*        <IconButton*/}
+      {/*          icon={<ResetIcon />}*/}
+      {/*          text={Locale.UI.Sync}*/}
+      {/*          onClick={async () => {*/}
+      {/*            try {*/}
+      {/*              await syncStore.sync();*/}
+      {/*              showToast(Locale.Settings.Sync.Success);*/}
+      {/*            } catch (e) {*/}
+      {/*              showToast(Locale.Settings.Sync.Fail);*/}
+      {/*              console.error("[Sync]", e);*/}
+      {/*            }*/}
+      {/*          }}*/}
+      {/*        />*/}
+      {/*      )}*/}
+      {/*    </div>*/}
+      {/*  </ListItem>*/}
 
-        <ListItem
-          title={Locale.Settings.Sync.LocalState}
-          subTitle={Locale.Settings.Sync.Overview(stateOverview)}
-        >
-          <div style={{ display: "flex" }}>
-            <IconButton
-              aria={Locale.Settings.Sync.LocalState + Locale.UI.Export}
-              icon={<UploadIcon />}
-              text={Locale.UI.Export}
-              onClick={() => {
-                syncStore.export();
-              }}
-            />
-            <IconButton
-              aria={Locale.Settings.Sync.LocalState + Locale.UI.Import}
-              icon={<DownloadIcon />}
-              text={Locale.UI.Import}
-              onClick={() => {
-                syncStore.import();
-              }}
-            />
-          </div>
-        </ListItem>
-      </List>
+      {/*  <ListItem*/}
+      {/*    title={Locale.Settings.Sync.LocalState}*/}
+      {/*    subTitle={Locale.Settings.Sync.Overview(stateOverview)}*/}
+      {/*  >*/}
+      {/*    <div style={{ display: "flex" }}>*/}
+      {/*      <IconButton*/}
+      {/*        aria={Locale.Settings.Sync.LocalState + Locale.UI.Export}*/}
+      {/*        icon={<UploadIcon />}*/}
+      {/*        text={Locale.UI.Export}*/}
+      {/*        onClick={() => {*/}
+      {/*          syncStore.export();*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*      <IconButton*/}
+      {/*        aria={Locale.Settings.Sync.LocalState + Locale.UI.Import}*/}
+      {/*        icon={<DownloadIcon />}*/}
+      {/*        text={Locale.UI.Import}*/}
+      {/*        onClick={() => {*/}
+      {/*          syncStore.import();*/}
+      {/*        }}*/}
+      {/*      />*/}
+      {/*    </div>*/}
+      {/*  </ListItem>*/}
+      {/*</List>*/}
 
       {showSyncConfigModal && (
         <SyncConfigModal onClose={() => setShowSyncConfigModal(false)} />
@@ -689,30 +682,30 @@ export function Settings() {
     </ListItem>
   );
 
-  const saasStartComponent = (
-    <ListItem
-      className={styles["subtitle-button"]}
-      title={
-        Locale.Settings.Access.SaasStart.Title +
-        `${Locale.Settings.Access.SaasStart.Label}`
-      }
-      subTitle={Locale.Settings.Access.SaasStart.SubTitle}
-    >
-      <IconButton
-        aria={
-          Locale.Settings.Access.SaasStart.Title +
-          Locale.Settings.Access.SaasStart.ChatNow
-        }
-        icon={<FireIcon />}
-        type={"primary"}
-        text={Locale.Settings.Access.SaasStart.ChatNow}
-        onClick={() => {
-          trackSettingsPageGuideToCPaymentClick();
-          window.location.href = SAAS_CHAT_URL;
-        }}
-      />
-    </ListItem>
-  );
+  // const saasStartComponent = (
+  //   <ListItem
+  //     className={styles["subtitle-button"]}
+  //     title={
+  //       Locale.Settings.Access.SaasStart.Title +
+  //       `${Locale.Settings.Access.SaasStart.Label}`
+  //     }
+  //     subTitle={Locale.Settings.Access.SaasStart.SubTitle}
+  //   >
+  //     <IconButton
+  //       aria={
+  //         Locale.Settings.Access.SaasStart.Title +
+  //         Locale.Settings.Access.SaasStart.ChatNow
+  //       }
+  //       icon={<FireIcon />}
+  //       type={"primary"}
+  //       text={Locale.Settings.Access.SaasStart.ChatNow}
+  //       onClick={() => {
+  //         trackSettingsPageGuideToCPaymentClick();
+  //         window.location.href = SAAS_CHAT_URL;
+  //       }}
+  //     />
+  //   </ListItem>
+  // );
 
   const useCustomConfigComponent = // Conditionally render the following ListItem based on clientConfig.isApp
     !clientConfig?.isApp && ( // only show if isApp is false
@@ -744,7 +737,7 @@ export function Settings() {
           aria-label={Locale.Settings.Access.OpenAI.Endpoint.Title}
           type="text"
           value={accessStore.openaiUrl}
-          placeholder={OPENAI_BASE_URL}
+          placeholder={OLLAMA_BASE_URL}
           onChange={(e) =>
             accessStore.update(
               (access) => (access.openaiUrl = e.currentTarget.value),
@@ -1384,38 +1377,38 @@ export function Settings() {
             </Popover>
           </ListItem>
 
-          <ListItem
-            title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
-            subTitle={
-              checkingUpdate
-                ? Locale.Settings.Update.IsChecking
-                : hasNewVersion
-                ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")
-                : Locale.Settings.Update.IsLatest
-            }
-          >
-            {checkingUpdate ? (
-              <LoadingIcon />
-            ) : hasNewVersion ? (
-              clientConfig?.isApp ? (
-                <IconButton
-                  icon={<ResetIcon></ResetIcon>}
-                  text={Locale.Settings.Update.GoToUpdate}
-                  onClick={() => clientUpdate()}
-                />
-              ) : (
-                <Link href={updateUrl} target="_blank" className="link">
-                  {Locale.Settings.Update.GoToUpdate}
-                </Link>
-              )
-            ) : (
-              <IconButton
-                icon={<ResetIcon></ResetIcon>}
-                text={Locale.Settings.Update.CheckUpdate}
-                onClick={() => checkUpdate(true)}
-              />
-            )}
-          </ListItem>
+          {/*<ListItem*/}
+          {/*  title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}*/}
+          {/*  subTitle={*/}
+          {/*    checkingUpdate*/}
+          {/*      ? Locale.Settings.Update.IsChecking*/}
+          {/*      : hasNewVersion*/}
+          {/*      ? Locale.Settings.Update.FoundUpdate(remoteId ?? "ERROR")*/}
+          {/*      : Locale.Settings.Update.IsLatest*/}
+          {/*  }*/}
+          {/*>*/}
+          {/*  {checkingUpdate ? (*/}
+          {/*    <LoadingIcon />*/}
+          {/*  ) : hasNewVersion ? (*/}
+          {/*    clientConfig?.isApp ? (*/}
+          {/*      <IconButton*/}
+          {/*        icon={<ResetIcon></ResetIcon>}*/}
+          {/*        text={Locale.Settings.Update.GoToUpdate}*/}
+          {/*        onClick={() => clientUpdate()}*/}
+          {/*      />*/}
+          {/*    ) : (*/}
+          {/*      <Link href={updateUrl} target="_blank" className="link">*/}
+          {/*        {Locale.Settings.Update.GoToUpdate}*/}
+          {/*      </Link>*/}
+          {/*    )*/}
+          {/*  ) : (*/}
+          {/*    <IconButton*/}
+          {/*      icon={<ResetIcon></ResetIcon>}*/}
+          {/*      text={Locale.Settings.Update.CheckUpdate}*/}
+          {/*      onClick={() => checkUpdate(true)}*/}
+          {/*    />*/}
+          {/*  )}*/}
+          {/*</ListItem>*/}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
@@ -1577,42 +1570,42 @@ export function Settings() {
 
         <SyncItems />
 
-        <List>
-          <ListItem
-            title={Locale.Settings.Mask.Splash.Title}
-            subTitle={Locale.Settings.Mask.Splash.SubTitle}
-          >
-            <input
-              aria-label={Locale.Settings.Mask.Splash.Title}
-              type="checkbox"
-              checked={!config.dontShowMaskSplashScreen}
-              onChange={(e) =>
-                updateConfig(
-                  (config) =>
-                    (config.dontShowMaskSplashScreen =
-                      !e.currentTarget.checked),
-                )
-              }
-            ></input>
-          </ListItem>
+        {/*<List>*/}
+        {/*<ListItem*/}
+        {/*  title={Locale.Settings.Mask.Splash.Title}*/}
+        {/*  subTitle={Locale.Settings.Mask.Splash.SubTitle}*/}
+        {/*>*/}
+        {/*  <input*/}
+        {/*    aria-label={Locale.Settings.Mask.Splash.Title}*/}
+        {/*    type="checkbox"*/}
+        {/*    checked={!config.dontShowMaskSplashScreen}*/}
+        {/*    onChange={(e) =>*/}
+        {/*      updateConfig(*/}
+        {/*        (config) =>*/}
+        {/*          (config.dontShowMaskSplashScreen =*/}
+        {/*            !e.currentTarget.checked),*/}
+        {/*      )*/}
+        {/*    }*/}
+        {/*  ></input>*/}
+        {/*</ListItem>*/}
 
-          <ListItem
-            title={Locale.Settings.Mask.Builtin.Title}
-            subTitle={Locale.Settings.Mask.Builtin.SubTitle}
-          >
-            <input
-              aria-label={Locale.Settings.Mask.Builtin.Title}
-              type="checkbox"
-              checked={config.hideBuiltinMasks}
-              onChange={(e) =>
-                updateConfig(
-                  (config) =>
-                    (config.hideBuiltinMasks = e.currentTarget.checked),
-                )
-              }
-            ></input>
-          </ListItem>
-        </List>
+        {/*<ListItem*/}
+        {/*  title={Locale.Settings.Mask.Builtin.Title}*/}
+        {/*  subTitle={Locale.Settings.Mask.Builtin.SubTitle}*/}
+        {/*>*/}
+        {/*  <input*/}
+        {/*    aria-label={Locale.Settings.Mask.Builtin.Title}*/}
+        {/*    type="checkbox"*/}
+        {/*    checked={config.hideBuiltinMasks}*/}
+        {/*    onChange={(e) =>*/}
+        {/*      updateConfig(*/}
+        {/*        (config) =>*/}
+        {/*          (config.hideBuiltinMasks = e.currentTarget.checked),*/}
+        {/*      )*/}
+        {/*    }*/}
+        {/*  ></input>*/}
+        {/*</ListItem>*/}
+        {/*</List>*/}
 
         <List>
           <ListItem
@@ -1649,7 +1642,7 @@ export function Settings() {
         </List>
 
         <List id={SlotID.CustomModel}>
-          {saasStartComponent}
+          {/*{saasStartComponent}*/}
           {accessCodeComponent}
 
           {!accessStore.hideUserApiKey && (

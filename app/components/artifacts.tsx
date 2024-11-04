@@ -143,6 +143,7 @@ export function ArtifactsShareButton({
           });
   return (
     <>
+      {/*//导出聊天记录的图片*/}
       <div className="window-action-button" style={style}>
         <IconButton
           icon={loading ? <LoadingButtonIcon /> : <ExportIcon />}

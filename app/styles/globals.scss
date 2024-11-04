@@ -148,12 +148,12 @@ select {
 label {
   cursor: pointer;
 }
-
+// 设置中聊天字体的大小
 input {
   text-align: center;
   font-family: inherit;
 }
-
+// 设置中可以选择的所有框
 input[type="checkbox"] {
   cursor: pointer;
   background-color: var(--white);
@@ -167,7 +167,7 @@ input[type="checkbox"] {
   align-items: center;
   justify-content: center;
 }
-
+// 选择后的指示条的样式
 input[type="checkbox"]:checked::after {
   display: inline-block;
   width: 8px;
@@ -176,13 +176,13 @@ input[type="checkbox"]:checked::after {
   content: " ";
   border-radius: 2px;
 }
-
+// 设置中可以拖动的进度条的框的样式
 input[type="range"] {
   appearance: none;
   background-color: var(--white);
   color: var(--black);
 }
-
+// 设置中可拖动的指示条的指示条的样式
 @mixin thumb() {
   appearance: none;
   height: 8px;
@@ -193,6 +193,7 @@ input[type="range"] {
   transition: all ease 0.3s;
   margin-left: 5px;
   border: none;
+
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -206,7 +207,7 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]::-ms-thumb {
   @include thumb();
 }
-
+// 设置中鼠标指向指示条时的伸缩长度
 @mixin thumbHover() {
   transform: scaleY(1.2);
   width: 24px;
@@ -223,7 +224,7 @@ input[type="range"]::-moz-range-thumb:hover {
 input[type="range"]::-ms-thumb:hover {
   @include thumbHover();
 }
-
+// 所有输入框的框的样式
 input[type="number"],
 input[type="text"],
 input[type="password"] {
@@ -362,7 +363,7 @@ pre {
     overflow: auto;
   }
 }
-
+// 密码（key）的小眼睛
 .password-input-container {
   max-width: 50%;
   display: flex;
@@ -376,7 +377,7 @@ pre {
     min-width: 80%;
   }
 }
-
+// chatgpt 头像的样式
 .user-avatar {
   height: 30px;
   min-height: 30px;
