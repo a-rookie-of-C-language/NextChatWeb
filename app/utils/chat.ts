@@ -265,7 +265,6 @@ export function stream(
             chatApi(chatPath, headers, requestPayload, tools); // call fetchEventSource
           }, 60);
         });
-        return;
       }
       if (running) {
         return;
